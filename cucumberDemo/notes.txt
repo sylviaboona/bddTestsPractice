@@ -1,0 +1,48 @@
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday
+    Given today is Sunday
+    When I ask whether it's Friday yet
+    Then I should be told "Nope"
+  
+  Scenario: Friday is Friday
+    Given today is Friday
+    When I ask whether it's Friday yet
+    Then I should be told "TGIF"
+
+
+
+
+
+
+
+    const assert = require('assert');
+const {Given, When, Then} = require('@cucumber/cucumber');
+let app = require('../../../src/app')
+Given("today is Sunday", function(){
+    // Write code here that turns the phrase above into concrete actions
+    this.today = 'Sunday'
+    // return 'Pending'
+})
+
+Given("today is Friday", function(){
+    // Write code here that turns the phrase above into concrete actions
+    this.today = 'Friday'
+    // return 'Pending'
+})
+
+When("I ask whether it's Friday yet", function(){
+    // Write code here that turns the phrase above into concrete actions
+    this.actualAnswer = app.isItFriday(this.today)
+    // return 'Pending'
+})
+
+Then("I should be told {string}", function(expectedAnswer){
+    // Write code here that turns the phrase above into concrete actions
+    assert.equal(this.actualAnswer, expectedAnswer)
+    // return 'Pending'
+})
+
+
+
